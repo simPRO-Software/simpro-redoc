@@ -2,10 +2,6 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-// == 1. GRAB THE ORIGINAL STYLED-COMPONENTS ==
-// (You need to find these at the bottom of the old SearchBox.tsx)
-// These are just examples, you will need to copy the real ones.
-
 const SearchWrap = styled.div`
   position: relative;
 `;

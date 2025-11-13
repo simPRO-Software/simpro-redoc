@@ -34,7 +34,7 @@ export default (env: { playground?: boolean; bench?: boolean } = {}) => ({
 
   devServer: {
     static: __dirname,
-    port: 9090,
+    port: 9092,
     hot: true,
     historyApiFallback: true,
     open: true,

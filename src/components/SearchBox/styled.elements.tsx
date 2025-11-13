@@ -31,6 +31,29 @@ export const SearchInput = styled.input.attrs(() => ({
   outline: none;
 `;
 
+export const GlobalSearchInput = styled.input.attrs(() => ({
+  className: 'search-input',
+}))`
+  width: calc(100% - ${props => props.theme.spacing.unit * 8}px);
+  box-sizing: border-box;
+  margin: 0 ${props => props.theme.spacing.unit * 4}px;
+  padding: 10px 15px;
+  border: 0;
+  border-bottom: 1px solid
+    ${({ theme }) =>
+      (getLuminance(theme.sidebar.backgroundColor) > 0.5 ? darken : lighten)(
+        0.1,
+        theme.sidebar.backgroundColor,
+      )};
+  font-family: ${({ theme }) => theme.typography.fontFamily};
+  font-weight: bold;
+  font-size: 13px;
+  color: 'black' 
+  background-color: transparent;
+  outline: none;
+  border-radius: 2.5px;
+`;
+
 export const SearchIcon = styled((props: { className?: string }) => (
   <svg
     className={props.className}
@@ -46,6 +69,8 @@ export const SearchIcon = styled((props: { className?: string }) => (
   className: 'search-icon',
 })`
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   left: ${props => props.theme.spacing.unit * 4}px;
   height: 1.8em;
   width: 0.9em;

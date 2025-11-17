@@ -1,20 +1,11 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { OperationBadge } from '../SideMenu';
+import { SearchIcon } from './styled.elements';
 
 const SearchWrap = styled.div`
   position: relative;
-`;
-
-const SearchIcon = styled.svg`
-  /* ... original styles ... */
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  fill: #aaa;
 `;
 
 const GlobalSearchInput = styled.input`
@@ -26,6 +17,7 @@ const GlobalSearchInput = styled.input`
 
 interface SearchIndexItem {
   title: string;
+  method: string;
   desc: string;
   page_file: string;
   anchor: string;
@@ -38,7 +30,7 @@ export const GlobalSearch = () => {
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
-    fetch('./assets/json/search-index.json')
+    fetch('./search-index.json')
       .then(res => res.json())
       .then((data: SearchIndexItem[]) => {
         setSearchIndex(data);
@@ -100,6 +92,7 @@ export const GlobalSearch = () => {
           <SearchResultsBox>
             {results.slice(0, 10).map((res, idx) => (
               <SearchResultItem key={idx} onMouseDown={() => handleClick(res)}>
+                <OperationBadge type={res.method}>{res.method}</OperationBadge>
                 <strong>{res.title}</strong>
               </SearchResultItem>
             ))}
@@ -122,8 +115,9 @@ const SearchResultsBox = styled.div`
   border-top: none;
   position: absolute;
   top: 100%;
-  left: 0;
+  left: -35px;
   right: 0;
+  min-width: 300px;
   max-height: 400px;
   overflow-y: auto;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -132,6 +126,7 @@ const SearchResultsBox = styled.div`
 const SearchResultItem = styled.div`
   padding: 10px 14px;
   cursor: pointer;
+  border-bottom: 1px solid #333333;
 
   &:hover {
     background: #f0f0f0;

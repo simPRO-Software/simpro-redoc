@@ -71,9 +71,9 @@ export const SearchIcon = styled((props: { className?: string }) => (
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: ${props => props.theme.spacing.unit * 4}px;
-  height: 1.8em;
-  width: 0.9em;
+  left: 10px;
+  height: 2em;
+  width: 1em;
 
   path {
     fill: ${props => props.theme.sidebar.textColor};

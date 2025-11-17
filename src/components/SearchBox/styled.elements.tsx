@@ -79,6 +79,32 @@ export const SearchIcon = styled((props: { className?: string }) => (
     fill: ${props => props.theme.sidebar.textColor};
   }
 `;
+export const CopyIcon = styled((props: { className?: string }) => (
+  <svg
+    className={props.className}
+    version="1.1"
+    viewBox="0 0 350 350"
+    x="0px"
+    xmlns="http://www.w3.org/2000/svg"
+    y="0px"
+  >
+    <path
+      d="M318.54,57.282h-47.652V15c0-8.284-6.716-15-15-15H34.264c-8.284,0-15,6.716-15,15v265.522c0,8.284,6.716,15,15,15h47.651
+		v42.281c0,8.284,6.716,15,15,15H318.54c8.284,0,15-6.716,15-15V72.282C333.54,63.998,326.824,57.282,318.54,57.282z
+		 M49.264,265.522V30h191.623v27.282H96.916c-8.284,0-15,6.716-15,15v193.24H49.264z M303.54,322.804H111.916V87.282H303.54V322.804
+		z"
+    />
+  </svg>
+)).attrs({
+  className: 'copy-icon',
+})`
+  height: 20px;
+  width: 20px;
+  z-index: 9999;
+  path {
+    fill: ${props => props.theme.sidebar.textColor};
+  }
+`;
 
 export const SearchResultsBox = styled.div`
   padding: ${props => props.theme.spacing.unit}px 0;
@@ -113,7 +139,9 @@ export const SearchResultsBox = styled.div`
 
 export const ClearIcon = styled.i`
   position: absolute;
-  display: inline-block;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
   width: ${props => props.theme.spacing.unit * 2}px;
   text-align: center;
   right: ${props => props.theme.spacing.unit * 4}px;

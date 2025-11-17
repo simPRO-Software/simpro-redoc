@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { OperationBadge } from '../SideMenu';
-import { SearchIcon } from './styled.elements';
+import { SearchIcon, CopyIcon } from './styled.elements';
 
 const SearchWrap = styled.div`
   position: relative;
@@ -17,6 +17,7 @@ const GlobalSearchInput = styled.input`
 
 interface SearchIndexItem {
   title: string;
+  path: string;
   method: string;
   desc: string;
   page_file: string;
@@ -66,12 +67,22 @@ export const GlobalSearch = () => {
     setTimeout(() => setIsFocused(false), 200);
   };
 
+  async function copyToClipboard(e: any, text: string) {
+    e.stopPropagation();
+    try {
+      await navigator.clipboard.writeText(text);
+      console.log('Text copied to clipboard');
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  }
+
   return (
     <div
       style={{
         position: 'absolute',
         zIndex: 99999,
-        top: '-45px',
+        top: '45px',
         right: '10%',
         maxWidth: '20%',
         minWidth: '225px',
@@ -89,11 +100,28 @@ export const GlobalSearch = () => {
         />
 
         {isFocused && results.length > 0 && (
-          <SearchResultsBox>
+          <SearchResultsBox onMouseDown={e => e.preventDefault()}>
             {results.slice(0, 10).map((res, idx) => (
               <SearchResultItem key={idx} onMouseDown={() => handleClick(res)}>
-                <OperationBadge type={res.method}>{res.method}</OperationBadge>
+                <BadgeCopyBox>
+                  <OperationBadge type={res.method}>{res.method}</OperationBadge>
+                  <span className="copy-icon" onMouseDown={e => copyToClipboard(e, res.path)}>
+                    <CopyIcon />
+                  </span>
+                </BadgeCopyBox>
                 <strong>{res.title}</strong>
+                <PathBox>
+                  <p
+                    style={{
+                      wordBreak: 'break-all',
+                      padding: '0 1rem',
+                      fontSize: '10px',
+                      fontFamily: 'courier',
+                    }}
+                  >
+                    <strong>{res.path}</strong>
+                  </p>
+                </PathBox>
               </SearchResultItem>
             ))}
           </SearchResultsBox>
@@ -108,6 +136,21 @@ export const GlobalSearch = () => {
     </div>
   );
 };
+
+const PathBox = styled.div`
+  pointer-events: none;
+  border-radius: 5px;
+  background-color: #33333338;
+  padding: 2px 0px;
+  text-size: 10px;
+`;
+
+const BadgeCopyBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const SearchResultsBox = styled.div`
   background: white;
@@ -128,7 +171,7 @@ const SearchResultItem = styled.div`
   cursor: pointer;
   border-bottom: 1px solid #333333;
 
-  &:hover {
+  :hover:not(:has(.copy-icon:hover)) {
     background: #f0f0f0;
   }
 

@@ -41,7 +41,7 @@ export const Operation = observer(({ operation }: OperationProps): JSX.Element =
   const { showWebhookVerb } = React.useContext(OptionsContext);
   const badgesBefore = badges.filter(({ position }) => position === 'before');
   const badgesAfter = badges.filter(({ position }) => position === 'after');
-
+  console.log(operation);
   return (
     <OptionsContext.Consumer>
       {options => (

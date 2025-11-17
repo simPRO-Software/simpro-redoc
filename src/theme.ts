@@ -121,7 +121,7 @@ const defaultTheme: ThemeInterface = {
       lineHeight: ({ typography }) => typography.lineHeight,
       fontWeight: ({ typography }) => typography.fontWeightRegular,
       color: '#e53935',
-      backgroundColor: 'rgba(38, 50, 56, 0.05)',
+      backgroundColor: '#333333',
       wrap: false,
     },
     links: {
@@ -161,7 +161,7 @@ const defaultTheme: ThemeInterface = {
     gutter: '2px',
   },
   rightPanel: {
-    backgroundColor: '#263238',
+    backgroundColor: '#333333',
     width: '40%',
     textColor: '#ffffff',
     servers: {
@@ -175,7 +175,7 @@ const defaultTheme: ThemeInterface = {
     },
   },
   codeBlock: {
-    backgroundColor: ({ rightPanel }) => darken(0.1, rightPanel.backgroundColor),
+    backgroundColor: '#2A2A2A',
   },
   fab: {
     backgroundColor: '#f2f2f2',

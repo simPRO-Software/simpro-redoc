@@ -82,7 +82,7 @@ export const GlobalSearch = () => {
       style={{
         position: 'absolute',
         zIndex: 99999,
-        top: '45px',
+        top: '-45px',
         right: '10%',
         maxWidth: '20%',
         minWidth: '225px',

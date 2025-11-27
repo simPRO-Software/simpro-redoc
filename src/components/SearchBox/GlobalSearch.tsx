@@ -53,7 +53,8 @@ export const GlobalSearch = () => {
     const newResults = searchIndex.filter(
       item =>
         item.title.toLowerCase().includes(newTerm.toLowerCase()) ||
-        (item.desc && item.desc.toLowerCase().includes(newTerm.toLowerCase())),
+        (item.desc && item.desc.toLowerCase().includes(newTerm.toLowerCase())) ||
+        item.path.toLowerCase().includes(newTerm.toLowerCase()),
     );
     setResults(newResults);
   };
@@ -111,7 +112,7 @@ export const GlobalSearch = () => {
                 </BadgeCopyBox>
                 <strong>{res.title}</strong>
                 <PathBox>
-                  <p
+                  <div
                     style={{
                       wordBreak: 'break-all',
                       padding: '0 1rem',
@@ -120,7 +121,7 @@ export const GlobalSearch = () => {
                     }}
                   >
                     <strong>{res.path}</strong>
-                  </p>
+                  </div>
                 </PathBox>
               </SearchResultItem>
             ))}

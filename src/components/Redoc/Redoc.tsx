@@ -14,6 +14,7 @@ import { ApiContentWrap, BackgroundStub, RedocWrap } from './styled.elements';
 
 import { StoreProvider } from '../StoreBuilder';
 import { GlobalSearch } from '../SearchBox/GlobalSearch';
+import { AlertGlobalStyle } from '../../common-elements/Alert';
 
 export interface RedocProps {
   store: AppStore;
@@ -40,6 +41,7 @@ export class Redoc extends React.Component<RedocProps> {
     return (
       <ThemeProvider theme={options.theme}>
         <StoreProvider value={store}>
+          <AlertGlobalStyle />
           <OptionsProvider value={options}>
             <RedocWrap className="redoc-wrap">
               {(!options.disableSearch && <GlobalSearch />) || null}

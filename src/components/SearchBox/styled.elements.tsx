@@ -98,9 +98,9 @@ export const CopyIcon = styled((props: { className?: string }) => (
 )).attrs({
   className: 'copy-icon',
 })`
-  height: 20px;
-  width: 20px;
-  z-index: 9999;
+  height: 1.2em;
+  width: 1.2em;
+  z-index: 9;
   path {
     fill: ${props => props.theme.sidebar.textColor};
   }

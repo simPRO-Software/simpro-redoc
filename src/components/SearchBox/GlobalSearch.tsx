@@ -3,16 +3,31 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { OperationBadge } from '../SideMenu';
 import { SearchIcon, CopyIcon } from './styled.elements';
+import Alert from '../../common-elements/Alert';
 
 const SearchWrap = styled.div`
   position: relative;
 `;
 
 const GlobalSearchInput = styled.input`
-  /* ... original styles ... */
   padding: 8px 8px 8px 32px; /* Make room for icon */
   width: 100%;
   box-sizing: border-box;
+`;
+
+const CopyIconBox = styled.div`
+  padding: 4px;
+  border-radius: 100%;
+  border: 0.5px solid #fff;
+
+  &:hover {
+    border: 0.5px solid #333333;
+  }
+  &:active .copy-icon {
+    fill: black;
+  }
+  display: flex;
+  align-items: center;
 `;
 
 interface SearchIndexItem {
@@ -29,6 +44,7 @@ export const GlobalSearch = () => {
   const [searchIndex, setSearchIndex] = useState<SearchIndexItem[]>([]);
   const [results, setResults] = useState<SearchIndexItem[]>([]);
   const [isFocused, setIsFocused] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     fetch('./search-index.json')
@@ -64,15 +80,13 @@ export const GlobalSearch = () => {
   };
 
   const onFocus = () => setIsFocused(true);
-  const onBlur = () => {
-    setTimeout(() => setIsFocused(false), 200);
-  };
 
   async function copyToClipboard(e: any, text: string) {
+    setShowAlert(false);
+    setShowAlert(true);
     e.stopPropagation();
     try {
       await navigator.clipboard.writeText(text);
-      console.log('Text copied to clipboard');
     } catch (err) {
       console.error('Failed to copy: ', err);
     }
@@ -81,14 +95,15 @@ export const GlobalSearch = () => {
   return (
     <div
       style={{
-        position: 'absolute',
-        zIndex: 99999,
-        top: '-45px',
+        position: 'fixed',
+        zIndex: 20,
+        top: '7px',
         right: '10%',
         maxWidth: '20%',
         minWidth: '225px',
       }}
     >
+      <Alert showAlert={showAlert} setShowAlert={setShowAlert} message={'Copied to clipboard'} />
       <SearchWrap role="search">
         <SearchIcon />
         <GlobalSearchInput
@@ -97,18 +112,22 @@ export const GlobalSearch = () => {
           type="text"
           onChange={handleSearch}
           onFocus={onFocus}
-          onBlur={onBlur}
         />
 
         {isFocused && results.length > 0 && (
-          <SearchResultsBox onMouseDown={e => e.preventDefault()}>
+          <SearchResultsBox>
             {results.slice(0, 10).map((res, idx) => (
               <SearchResultItem key={idx} onMouseDown={() => handleClick(res)}>
                 <BadgeCopyBox>
                   <OperationBadge type={res.method}>{res.method}</OperationBadge>
-                  <span className="copy-icon" onMouseDown={e => copyToClipboard(e, res.path)}>
+                  <CopyIconBox
+                    className=""
+                    onMouseDown={e => {
+                      copyToClipboard(e, res.path);
+                    }}
+                  >
                     <CopyIcon />
-                  </span>
+                  </CopyIconBox>
                 </BadgeCopyBox>
                 <strong>{res.title}</strong>
                 <PathBox>

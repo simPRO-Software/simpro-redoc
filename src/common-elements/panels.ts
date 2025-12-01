@@ -17,7 +17,7 @@ export const MiddlePanel = styled.div<{ $compact?: boolean }>`
 export const Section = styled.div.attrs(props => ({
   [SECTION_ATTR]: props.id,
 }))<{ $underlined?: boolean }>`
-  padding: ${props => props.theme.spacing.sectionVertical}px 0;
+  padding: ${props => props.theme.spacing.sectionVertical / 4}px 0;
 
   &:last-child {
     min-height: calc(100vh + 1px);
@@ -67,7 +67,7 @@ export const DarkRightPanel = styled(RightPanel)`
 export const Row = styled.div`
   display: flex;
   width: 100%;
-  padding: 0;
+  padding: 0.5rem 0 0 0;
 
   ${media.lessThan('medium', true)`
     flex-direction: column;

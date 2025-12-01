@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { OperationBadge } from '../SideMenu';
-import { SearchIcon, CopyIcon } from './styled.elements';
+import { SearchIcon, CopyIcon, ClearIcon } from './styled.elements';
 import Alert from '../../common-elements/Alert';
 
 const SearchWrap = styled.div`
@@ -130,6 +130,12 @@ export const GlobalSearch = () => {
 
   const onFocus = () => setIsFocused(true);
 
+  const onClear = () => {
+    setIsFocused(false);
+    setResults([]);
+    setTerm('');
+  };
+
   async function copyToClipboard(e: any, text: string) {
     setShowAlert(false);
     setShowAlert(true);
@@ -162,6 +168,7 @@ export const GlobalSearch = () => {
           onChange={handleSearch}
           onFocus={onFocus}
         />
+        <ClearIcon onClick={onClear}>X</ClearIcon>
 
         {isFocused && results.length > 0 && (
           <SearchResultsBox>

@@ -8,13 +8,7 @@ import { MenuItem } from '../SideMenu/MenuItem';
 import { OptionsContext } from '../OptionsProvider';
 import { bind, debounce } from 'decko';
 import { PerfectScrollbarWrap } from '../../common-elements/perfect-scrollbar';
-import {
-  ClearIcon,
-  SearchIcon,
-  SearchInput,
-  SearchResultsBox,
-  SearchWrap,
-} from './styled.elements';
+import { SearchIcon, SearchInput, SearchResultsBox, SearchWrap } from './styled.elements';
 import { l } from '../../services/Labels';
 
 export interface SearchBoxProps {
@@ -143,7 +137,6 @@ export class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxStat
 
     return (
       <SearchWrap role="search">
-        {this.state.term && <ClearIcon onClick={this.clear}>×</ClearIcon>}
         <SearchIcon />
         <SearchInput
           value={this.state.term}

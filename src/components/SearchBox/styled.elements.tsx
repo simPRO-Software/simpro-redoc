@@ -144,11 +144,13 @@ export const ClearIcon = styled.i`
   right: 10px;
   width: ${props => props.theme.spacing.unit * 2}px;
   text-align: center;
-  right: ${props => props.theme.spacing.unit * 4}px;
   line-height: 2em;
   vertical-align: middle;
-  margin-right: 2px;
   cursor: pointer;
   font-style: normal;
   color: '#666';
+
+  &:hover {
+    color: #8d8d8dff;
+  }
 `;

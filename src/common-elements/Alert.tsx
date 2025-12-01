@@ -34,7 +34,7 @@ const BadgeCopyBox = styled.div`
   position: fixed;
   padding: 1rem;
   top: 0.5rem;
-  right: 26.5rem;
+  right: 27.5%;
   z-index: 50;
   height: 2rem;
   align-items: center;

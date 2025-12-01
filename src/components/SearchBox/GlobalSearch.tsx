@@ -11,6 +11,7 @@ const SearchWrap = styled.div`
 
 const GlobalSearchInput = styled.input`
   padding: 8px 8px 8px 32px; /* Make room for icon */
+  min-width: 300px;
   width: 100%;
   box-sizing: border-box;
 `;
@@ -28,6 +29,54 @@ const CopyIconBox = styled.div`
   }
   display: flex;
   align-items: center;
+`;
+
+const PathBox = styled.div`
+  pointer-events: none;
+  border-radius: 5px;
+  background-color: #33333338;
+  padding: 2px 0px;
+  text-size: 10px;
+`;
+
+const BadgeCopyBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const SearchResultsBox = styled.div`
+  background: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  right: 0;
+  min-width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+`;
+
+const SearchResultItem = styled.div`
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #333333;
+
+  :hover:not(:has(.copy-icon:hover)) {
+    background: #f0f0f0;
+  }
+
+  & > strong {
+    display: block;
+    font-size: 13px;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 interface SearchIndexItem {
@@ -156,51 +205,3 @@ export const GlobalSearch = () => {
     </div>
   );
 };
-
-const PathBox = styled.div`
-  pointer-events: none;
-  border-radius: 5px;
-  background-color: #33333338;
-  padding: 2px 0px;
-  text-size: 10px;
-`;
-
-const BadgeCopyBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const SearchResultsBox = styled.div`
-  background: white;
-  border: 1px solid #ccc;
-  border-top: none;
-  position: absolute;
-  top: 100%;
-  left: -35px;
-  right: 0;
-  min-width: 300px;
-  max-height: 400px;
-  overflow-y: auto;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-`;
-
-const SearchResultItem = styled.div`
-  padding: 10px 14px;
-  cursor: pointer;
-  border-bottom: 1px solid #333333;
-
-  :hover:not(:has(.copy-icon:hover)) {
-    background: #f0f0f0;
-  }
-
-  & > strong {
-    display: block;
-    font-size: 13px;
-    color: #333;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-`;

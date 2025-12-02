@@ -21,7 +21,7 @@ export class SideMenu extends React.Component<{ menu: MenuStore; className?: str
     return (
       <PerfectScrollbarWrap
         updateFn={this.saveScrollUpdate}
-        className={this.props.className}
+        className={this.props.className ?? 'sidebar'}
         options={{
           wheelPropagation: false,
         }}

@@ -116,12 +116,12 @@ const defaultTheme: ThemeInterface = {
       lineHeight: '1.6em',
     },
     code: {
-      fontSize: '13px',
+      fontSize: '16px',
       fontFamily: 'Courier, monospace',
       lineHeight: ({ typography }) => typography.lineHeight,
       fontWeight: ({ typography }) => typography.fontWeightRegular,
       color: '#e53935',
-      backgroundColor: '#333333',
+      backgroundColor: '#3333330c',
       wrap: false,
     },
     links: {

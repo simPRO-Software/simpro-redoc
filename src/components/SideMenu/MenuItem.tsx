@@ -65,7 +65,11 @@ export class MenuItem extends React.Component<MenuItemProps> {
         ) : (
           <MenuItemLabel $depth={item.depth} $active={item.active} $type={item.type} ref={this.ref}>
             {item.type === 'schema' && <OperationBadge type="schema">schema</OperationBadge>}
-            <MenuItemTitle width="calc(100% - 38px)" title={item.sidebarLabel}>
+            <MenuItemTitle
+              width="calc(100% - 38px)"
+              title={item.sidebarLabel}
+              titleLength={item.sidebarLabel.length ?? 0}
+            >
               {item.sidebarLabel}
               {this.props.children}
             </MenuItemTitle>
@@ -123,7 +127,11 @@ export const OperationMenuItemContent = observer((props: OperationMenuItemConten
       ) : (
         <OperationBadge type={item.httpVerb}>{shortenHTTPVerb(item.httpVerb)}</OperationBadge>
       )}
-      <MenuItemTitle tabIndex={0} width="calc(100% - 38px)">
+      <MenuItemTitle
+        tabIndex={0}
+        width="calc(100% - 38px)"
+        titleLength={item.sidebarLabel.length ?? 0}
+      >
         {item.sidebarLabel}
         {props.children}
       </MenuItemTitle>

@@ -169,7 +169,7 @@ export const MenuItemLabel = styled.label.attrs((props: MenuItemLabelType) => ({
 
 export const MenuItemTitle = styled.span<{ width?: string; titleLength: number }>`
   display: inline-block;
-  text-wrap: ${props => (props.titleLength > 30 ? 'wrap' : 'nowrap')};
+  text-wrap: ${props => (props.titleLength > 32 ? 'wrap' : 'nowrap')};
   vertical-align: middle;
   width: ${props => (props.width ? props.width : 'auto')};
 `;

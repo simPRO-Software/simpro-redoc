@@ -84,6 +84,7 @@ interface SearchIndexItem {
   path: string;
   method: string;
   desc: string;
+  deprecated: boolean;
   page_file: string;
   anchor: string;
 }
@@ -115,12 +116,21 @@ export const GlobalSearch = () => {
       return;
     }
 
-    const newResults = searchIndex.filter(
-      item =>
-        item.title.toLowerCase().includes(newTerm.toLowerCase()) ||
-        (item.desc && item.desc.toLowerCase().includes(newTerm.toLowerCase())) ||
-        item.path.toLowerCase().includes(newTerm.toLowerCase()),
-    );
+    const newResults = searchIndex
+      .filter(
+        item =>
+          item.title.toLowerCase().includes(newTerm.toLowerCase()) ||
+          (item.desc && item.desc.toLowerCase().includes(newTerm.toLowerCase())) ||
+          item.path.toLowerCase().includes(newTerm.toLowerCase()),
+      )
+      .sort((itemA, itemB) => {
+        const numA = +itemA.deprecated;
+        const numB = +itemB.deprecated;
+        return numA - numB;
+      });
+
+    console.log(newResults.slice(0, 10));
+
     setResults(newResults);
   };
 
@@ -168,7 +178,7 @@ export const GlobalSearch = () => {
           onChange={handleSearch}
           onFocus={onFocus}
         />
-        <ClearIcon onClick={onClear}>X</ClearIcon>
+        {term.length > 0 && <ClearIcon onClick={onClear}>X</ClearIcon>}
 
         {isFocused && results.length > 0 && (
           <SearchResultsBox>

@@ -50,5 +50,5 @@ export const HeadersCaption = styled(UnderlinedHeader).attrs({
 `;
 
 export const Code = styled.strong`
-  vertical-align: top;
+  vertical-align: center;
 `;

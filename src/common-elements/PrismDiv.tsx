@@ -16,7 +16,6 @@ export const PrismDiv = styled.div`
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
-
     -moz-tab-size: 4;
     -o-tab-size: 4;
     tab-size: 4;
@@ -39,6 +38,10 @@ export const PrismDiv = styled.div`
     padding: 1em;
     margin: 0.5em 0;
     overflow: auto;
+  }
+
+  .token {
+    font-size: 14px;
   }
 
   .token.comment,

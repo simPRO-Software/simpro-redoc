@@ -5,15 +5,16 @@ import { ThemeProvider } from '../../styled-components';
 import { OptionsProvider } from '../OptionsProvider';
 
 import { AppStore } from '../../services';
-import { ApiInfo } from '../ApiInfo/';
+// import { ApiInfo } from '../ApiInfo/';
 import { ApiLogo } from '../ApiLogo/ApiLogo';
 import { ContentItems } from '../ContentItems/ContentItems';
 import { SideMenu } from '../SideMenu/SideMenu';
 import { StickyResponsiveSidebar } from '../StickySidebar/StickyResponsiveSidebar';
 import { ApiContentWrap, BackgroundStub, RedocWrap } from './styled.elements';
 
-import { SearchBox } from '../SearchBox/SearchBox';
 import { StoreProvider } from '../StoreBuilder';
+import { GlobalSearch } from '../SearchBox/GlobalSearch';
+import { AlertGlobalStyle } from '../../common-elements/Alert';
 
 export interface RedocProps {
   store: AppStore;
@@ -34,29 +35,22 @@ export class Redoc extends React.Component<RedocProps> {
 
   render() {
     const {
-      store: { spec, menu, options, search, marker },
+      store: { spec, menu, options },
     } = this.props;
     const store = this.props.store;
     return (
       <ThemeProvider theme={options.theme}>
         <StoreProvider value={store}>
+          <AlertGlobalStyle />
           <OptionsProvider value={options}>
             <RedocWrap className="redoc-wrap">
+              {(!options.disableSearch && <GlobalSearch />) || null}
               <StickyResponsiveSidebar menu={menu} className="menu-content">
                 <ApiLogo info={spec.info} />
-                {(!options.disableSearch && (
-                  <SearchBox
-                    search={search!}
-                    marker={marker}
-                    getItemById={menu.getItemById}
-                    onActivate={menu.activateAndScroll}
-                  />
-                )) ||
-                  null}
                 <SideMenu menu={menu} />
               </StickyResponsiveSidebar>
               <ApiContentWrap className="api-content">
-                <ApiInfo store={store} />
+                {/* <ApiInfo store={store} /> */}
                 <ContentItems items={menu.items as any} />
               </ApiContentWrap>
               <BackgroundStub />

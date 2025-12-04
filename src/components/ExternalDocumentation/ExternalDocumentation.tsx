@@ -22,7 +22,7 @@ export class ExternalDocumentation extends React.Component<{
 
     return (
       <LinkWrap $compact={this.props.compact}>
-        <a href={externalDocs.url}>{externalDocs.description || externalDocs.url}</a>
+        <a href={externalDocs.url}>External Docs</a>
       </LinkWrap>
     );
   }

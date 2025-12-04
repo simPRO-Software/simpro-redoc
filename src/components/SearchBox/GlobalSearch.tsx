@@ -128,9 +128,6 @@ export const GlobalSearch = () => {
         const numB = +itemB.deprecated;
         return numA - numB;
       });
-
-    console.log(newResults.slice(0, 10));
-
     setResults(newResults);
   };
 
@@ -195,7 +192,33 @@ export const GlobalSearch = () => {
                     <CopyIcon />
                   </CopyIconBox>
                 </BadgeCopyBox>
-                <strong>{res.title}</strong>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                  }}
+                >
+                  {res.deprecated && (
+                    <strong
+                      style={{
+                        color: 'grey',
+                        textDecoration: 'none !important',
+                        marginRight: '4px',
+                      }}
+                    >
+                      @Deprecated
+                    </strong>
+                  )}
+                  <strong
+                    style={{
+                      color: res.deprecated ? 'grey' : 'inherit',
+                      textDecoration: res.deprecated ? 'line-through' : 'inherit',
+                    }}
+                  >
+                    {' '}
+                    {res.title}
+                  </strong>
+                </div>
                 <PathBox>
                   <div
                     style={{

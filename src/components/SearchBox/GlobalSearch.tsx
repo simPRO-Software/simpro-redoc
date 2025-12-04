@@ -10,7 +10,7 @@ const SearchWrap = styled.div`
 `;
 
 const GlobalSearchInput = styled.input`
-  padding: 8px 8px 8px 32px; /* Make room for icon */
+  padding: 8px 24px 8px 32px; /* Make room for icon */
   min-width: 300px;
   width: 100%;
   box-sizing: border-box;
@@ -175,6 +175,11 @@ export const GlobalSearch = () => {
           onChange={handleSearch}
           onFocus={onFocus}
         />
+        <div
+          style={{
+            marginLeft: '20px',
+          }}
+        ></div>
         {term.length > 0 && <ClearIcon onClick={onClear}>X</ClearIcon>}
 
         {isFocused && results.length > 0 && (
